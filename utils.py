@@ -1,7 +1,10 @@
 import PyPDF2
 from langchain.embeddings import OpenAIEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain.chains.conversational_retrieval.base import ConversationalRetrievalChain
 from langchain.vectorstores import FAISS
+from langchain.chat_models import ChatOpenAI
+from langchain_huggingface import HuggingFaceEndpoint
 
 def process_pdf(file):
     """Przetwarza plik PDF i zwraca tekst."""
@@ -18,5 +21,5 @@ def create_embeddings(text):
 
 def answer_question(question, retriever, history):
     """Generuje odpowiedź na pytanie, korzystając z retrievera i historii."""
-    qa_chain = ConversationalRetrievalChain.from_llm(ChatOpenAI(temperature=0), retriever)
+    qa_chain = ConversationalRetrievalChain.from_llm(ChatOpenAI(openai_api_key="TWÓJ_KLUCZ_API",temperature=0), retriever) # opcjonalnie HuggingFaceEndpoint(repo_id="google/flan-t5-xxl", temperature=0.5)
     return qa_chain.run({"question": question, "chat_history": history})
