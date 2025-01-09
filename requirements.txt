@@ -1,10 +1,7 @@
-streamlit 
-pypdf2
-python-dotenv
-InstructorEmbedding
-sentence_transformers
+streamlit
+PyPDF2
 langchain
 langchain-community
-faiss_cpu
 openai
-huggingface_hub
+faiss-cpu
+langchain-huggingface
